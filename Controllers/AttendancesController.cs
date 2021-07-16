@@ -19,12 +19,17 @@ namespace BigSchool.Controllers
             BigSchoolContext context = new BigSchoolContext();
             if (context.Attendance.Any(c=>c.Attendee ==userID&&c.Courseid==attendanceDto.Id))
             {
-                return BadRequest("The attendance alreadly exists");
+                //return BadRequest("The attendance alreadly exists");
+                context.Attendance.Remove(context.Attendance.SingleOrDefault(c => c.Attendee == userID && c.Courseid == attendanceDto.Id));
+                context.SaveChanges();
+                return Ok("cancel");
             }
             var attendace = new Attendance() { Courseid = attendanceDto.Id, Attendee = User.Identity.GetUserId() };
             context.Attendance.Add(attendace);
             context.SaveChanges();
             return Ok();
         }
+        
+       
     }
 }

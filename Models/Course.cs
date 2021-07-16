@@ -30,6 +30,9 @@ namespace BigSchool.Models
         public int CategoryId { get; set; }
         public string Name;
         public string LecturerName;
+        public bool isLogin = false;
+        public bool isShowGoing = false;
+        public bool isShowFollow = false;
         public List<Category> ListCategory = new List<Category>();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
